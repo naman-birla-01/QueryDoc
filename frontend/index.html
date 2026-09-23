@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueryDoc - RAG Document Q&A</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+    
+    <div class="container">
+        <header class="glass-panel main-header">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10 9H9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h1>QueryDoc</h1>
+            </div>
+            <p class="tagline">Upload your PDFs. Ask anything.</p>
+        </header>
+
+        <main class="app-layout">
+            <!-- Sidebar: Document Manager -->
+            <aside class="glass-panel document-manager">
+                <div class="manager-header">
+                    <h2>Documents</h2>
+                </div>
+                
+                <div class="upload-zone" id="upload-zone">
+                    <input type="file" id="file-input" accept=".pdf" hidden>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    <p>Click or drag PDF here</p>
+                </div>
+                <div id="upload-progress" class="hidden">
+                    <div class="spinner"></div>
+                    <span>Uploading & Indexing...</span>
+                </div>
+
+                <div class="document-list" id="document-list">
+                    <!-- Documents will be populated here -->
+                </div>
+            </aside>
+
+            <!-- Main Content: Chat Interface -->
+            <section class="glass-panel chat-interface">
+                <div class="chat-header">
+                    <h2>Q&A</h2>
+                    <div class="doc-filter">
+                        <select id="doc-filter-select">
+                            <option value="">Search all documents</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="chat-history" id="chat-history">
+                    <div class="welcome-message">
+                        <h3>Welcome to QueryDoc</h3>
+                        <p>Upload a PDF to get started, then ask questions about its content here.</p>
+                    </div>
+                    <!-- Chat messages go here -->
+                </div>
+
+                <div class="chat-input-container">
+                    <form id="chat-form">
+                        <input type="text" id="chat-input" placeholder="Ask a question..." autocomplete="off" disabled>
+                        <button type="submit" id="chat-submit" disabled>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/documents.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
